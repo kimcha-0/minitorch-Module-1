@@ -23,7 +23,20 @@ def central_difference(f: Any, *vals: Any, arg: int = 0, epsilon: float = 1e-6) 
         An approximation of $f'_i(x_0, \ldots, x_{n-1})$
     """
     # TODO: Implement for Task 1.1.
-    raise NotImplementedError("Need to implement for Task 1.1")
+    # f(x_i+e) - f(x_i-e) / 2e
+    f_0 = []
+    f_1 = []
+    for i in range(len(vals)):
+        if i == arg:
+            f_0.append(vals[i] + epsilon)
+            f_1.append(vals[i] - epsilon)
+        else:
+            f_0.append(vals[i])
+            f_1.append(vals[i])
+    f_prime = (f(*tuple(f_0)) - f(*tuple(f_1))) / (2*epsilon)
+
+    return f_prime
+
 
 
 variable_count = 1
